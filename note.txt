@@ -1,0 +1,24 @@
+#运动
+```
+fast 快       200
+normal 正常   400
+slow 慢   600
+toggle : 显示隐藏
+
+animate:
+		
+step：每次运动记录的细节信息（比如:位置,进度）
+	可以利用step：function(now){}做进度条...
+	
+duration:时间
+
+easing:运动的方式
+	默认：swing 、 linear
+	
+complete:回调函数
+
+
+$('#div').animate({
+	left:200
+},3000,function(){})
+```
