@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+	body {
+		margin: 0;
+	}
+	input {
+		margin: 0;
+		padding: 0;
+		outline: none;
+		border: none;
+	}
+	#wrap {
+		position: relative;
+		width: 500px;
+		height: 207px;
+		overflow: hidden;
+		margin: 50px;
+	}
+	#list {
+		width: 700%;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	li {
+		
+		float: left;
+	}
+	img {
+		width: 500px;
+		
+	}
+	#wrap input {
+		position: absolute;
+		z-index: 2;
+		width: 40px;
+		height: 40px;
+		background: #ccc;
+		font: 24px/40px "宋体";
+		color: #333;
+		margin-top: 15%;
+	}
+	#wrap input:nth-of-type(2){
+		right: 0;
+	}
+</style>
+</head>
+<body>
+	<div id="wrap">
+		<input type="button" value="<" id="prev">
+		<input type="button" value =">" id="next">
+		<ul id="list">
+			<li><img src="img/img1.gif"></li>
+			<li><img src="img/img2.gif"></li>
+			<li><img src="img/img3.gif"></li>
+			<li><img src="img/img4.gif"></li>
+			<li><img src="img/img5.gif"></li>
+			<li><img src="img/img6.gif"></li>
+			<li><img src="img/img1.gif"></li>
+		</ul>
+	</div>
+<script src="jquery-3.1.1.js"></script>
+<script>
+$(function(){
+	var num = 0;
+	var imgW = $('#list').find('li').innerWidth();//width()
+	console.log(imgW)
+	$('#next').click(function(){
+		num++;
+		$('#list').stop().animate({
+		 	left:-num*imgW
+		},function(){
+			if(num >= $('li').length-1){
+				num = 0;
+				$('#list').css('left',0);
+			}
+		})
+	});
+	
+	$('#prev').click(function(){
+		num--;
+		if(num < 0){
+			num = $('li').length-1;
+			$('#list').css('left',-num*imgW);
+			num--;
+		}
+		$('#list').stop().animate({
+			left:-num*imgW
+		})
+	});
+});
+</script>
+</body>
+</html>
